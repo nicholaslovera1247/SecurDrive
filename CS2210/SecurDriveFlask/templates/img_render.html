@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+     }
+    </style>
+    <title>SecurDrive Activity Image</title>
+</head>
+<body>
+<h1 style="text-align:center">SecurDrive Activity/Security Log</h1>
+<p id="datetime" style="text-align:center"></p>
+{% if activity %}
+<h3 style="color: red" align="center">Activity has been detected by SecurDrive in your vehicle, this is what we saw:</h3>
+<p align="center">Detected on: {{dateOfPicture}}</p>
+{% endif %}
+<img src= "{{image}}" style="width:40%;" class="center">
+<p></p> 
+{% if activity %}
+<div style="text-align:center">
+  <a href= "{{image}}" download="SecurDriveDetection{{dateOfPicture}}.jpg">Download Image Here</span></a>
+  <form action = "/delete_photo" method = "post">
+     <button type ="submit">Delete Photo and Show Next (if applicable) </button>
+  </form>
+</div>
+{% endif %}
+</body>
+
+<script>
+  // Get current date and time
+  var now = new Date();
+  var datetime = now.toLocaleString();
+
+  // Insert date and time into HTML
+  document.getElementById("datetime").innerHTML = datetime;
+</script>
+
+</html>
